@@ -16,20 +16,33 @@ sui["_id"] = sui_id
 restraunts = db["restraunts"]
 restraunts.remove
 
-restraunts.insert({"name" => "Willie's", "group_id" => sui["_id"] })
-restraunts.insert({"name" => "Thai Pepper", "group_id" => sui["_id"] })
-restraunts.insert({"name" => "In n out", "group_id" => sui["_id"] })
-restraunts.insert({"name" => "Cookout", "group_id" => duke_id })
-restraunts.insert({"name" => "Tacos", "group_id" => sui["_id"] })
+willies = {"name" => "Willie's", "group_id" => sui["_id"] }
+thai = {"name" => "Thai Pepper", "group_id" => sui["_id"] }
+ininout = {"name" => "In n out", "group_id" => sui["_id"] }
+cookout = {"name" => "Cookout", "group_id" => duke_id }
+tacos = {"name" => "Tacos", "group_id" => sui["_id"] }
+
+[willies, thai, ininout, cookout, tacos].each do |rest|
+  rest["_id"] = restraunts.insert(rest)
+end
 
 # Add people "Chris", "MacRae", "Patrick", "Mike", "Kevin", "Carina"
 people = db["people"]
 people.remove
 
-people.insert({ "name" => "MacRae", "group_id" => sui["_id"]  })
-people.insert({ "name" => "Chris", "group_id" => sui["_id"]  })
-people.insert({ "name" => "Patrick", "group_id" => sui["_id"]  })
-people.insert({ "name" => "Mike", "group_id" => sui["_id"]  })
-people.insert({ "name" => "Kevin", "group_id" => sui["_id"]  })
-people.insert({ "name" => "Carina", "group_id" => duke_id })
+macrae = { "name" => "MacRae", "group_id" => sui["_id"]  }
+chris = { "name" => "Chris", "group_id" => sui["_id"]  }
+patrick = { "name" => "Patrick", "group_id" => sui["_id"]  }
+mike = { "name" => "Mike", "group_id" => sui["_id"]  }
+kevin = { "name" => "Kevin", "group_id" => sui["_id"]  }
+carina = { "name" => "Carina", "group_id" => duke_id }
 
+[macrae, chris, patrick, mike, kevin, carina].each do |person|
+  person["_id"] = people.insert(person)
+end
+
+# Add votes
+votes = db["votes"]
+votes.remove
+
+votes.insert({"restraunt_id" => willies["_id"], "person_id" => macrae["_id"] })
