@@ -1,0 +1,27 @@
+Pending my understanding of mongo
+
+Collections contain many documents
+
+Collections:
+
+
+
+Groups
+- has many restaurants
+- has many people
+
+Restaurants
+- has one group
+- name
+
+People
+- has one group
+- name
+- votes ( has many restaurants )
+- veto ( has one restaurant )
+
+====
+historical data?
+- restraunts could have a count of stuff
+- we could have vote and veto objects 
+	* These would be updated for the course of one lunchtime but then become archived. 
